@@ -11,6 +11,6 @@ In the index.js file located on the **src** folder you already have the address 
 
 To run the project locally, you will need a server. The easiest way is to install [Python](https://www.python.org/) and, from the **src** folder, open the terminal and run *python -m http.server 8000*. After that, just type *http://localhost:8000/index.html* in your browser and it should work.
 
-Also, to actually try to guess the number, you will need a browser wallet. I used Metamask during the development and it worked great!
+Also, to actually try to guess the number, you will need a browser wallet. I used [Metamask](https://metamask.io/) during the development and it worked great!
 
-To get the GoerliETH (testnet money), you can use this site: [Goerli Faucet](https://goerlifaucet.com/). Click [HERE](https://medium.com/@mwhc00/how-to-enable-ethereum-test-networks-on-metamask-again-d7831da23a09#:~:text=The%20test%20networks%20are%20already,That's%20it!) to see a quick tutorial on how to configure your metamask for it to show the testnets.
+To get the GoerliETH (testnet money), you can use this site: [Goerli Faucet](https://goerlifaucet.com/). Click [HERE](https://medium.com/@mwhc00/how-to-enable-ethereum-test-networks-on-metamask-again-d7831da23a09#:~:text=The%20test%20networks%20are%20already,That's%20it!) to see a quick tutorial on how to configure your metamask so it can show the Ethereum Testnets.
