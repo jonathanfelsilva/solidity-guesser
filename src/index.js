@@ -107,16 +107,80 @@ async function _updateLastGuesses() {
 }
 
 function _renderEvents(events) {
-    document.getElementById('user-guesses').innerText = ""
+    const mainDiv =  document.getElementById('user-guesses')
 
+    // Reset the table
+    mainDiv.innerText = "";
+
+    // Create the table and add the bootstrap classes
+    const table = document.createElement('table')
+    table.classList.add('table')
+    table.classList.add('text-white')
+
+    // Create the THEAD and the header row
+    const thead = document.createElement('thead')
+    const headRow = document.createElement('tr')
+    
+    // Create the date, guess and result columns
+    const dateColumn = document.createElement('th')
+    dateColumn.innerText = 'Date'
+    dateColumn.scope = 'col'
+    
+    const guessColumn = document.createElement('th')
+    guessColumn.innerText = 'Guess'
+    guessColumn.scope = 'col'
+
+    const resultColumn = document.createElement('th')
+    resultColumn.innerText = 'Result'
+    resultColumn.scope = 'col'
+
+    // Append the columns
+    headRow.append(dateColumn)
+    headRow.append(guessColumn)
+    headRow.append(resultColumn)
+
+    // Append the row in the header
+    thead.append(headRow)
+
+    // Append the header in the table
+    table.append(thead)
+
+    // Create the table body
+    const tBody = document.createElement('tbody')
+
+    // Reverse the events to get the latest ones and define the number of iterations
     events.reverse()
     const numberOfIterations = events.length > 5 ? 5 : events.length
 
     for (let i = 0; i < numberOfIterations; i++) {
         const guess = events[i].returnValues
         const date = `${new Date(guess.date * 1000).toLocaleDateString()} ${new Date(guess.date * 1000).toLocaleTimeString()}`;
-        document.getElementById('user-guesses').innerText += `${date} | ${guess.guess} (${guess.correct ? 'Correct guess' : 'Wrong guess'})\n`
+
+        // Create the table row
+        const tr = document.createElement('tr')
+
+        // Generate the informations by guess (date, guess and result)
+        const dateInfo = document.createElement('td')
+        dateInfo.innerText = date
+
+        const guessInfo = document.createElement('td')
+        guessInfo.innerText = guess.guess
+
+        const resultInfo = document.createElement('td')
+        resultInfo.innerText = guess.correct ? 'Correct guess' : 'Wrong guess'
+
+        // Append them
+        tr.append(dateInfo)
+        tr.append(guessInfo)
+        tr.append(resultInfo)
+
+        // Append the finalized row
+        tBody.append(tr)
     }
+
+    // Append the table body onto the table and append the table in the main div
+    table.append(tBody)
+    mainDiv.append(table)
 }
 
 async function guess() {

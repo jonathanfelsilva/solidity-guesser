@@ -1,5 +1,44 @@
 const solidityGuesserAbi = [
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newCooldownTime",
+				"type": "uint256"
+			}
+		],
+		"name": "changeCooldown",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newFee",
+				"type": "uint256"
+			}
+		],
+		"name": "changeGuessFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_guess",
+				"type": "uint32"
+			}
+		],
+		"name": "guess",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -62,30 +101,8 @@ const solidityGuesserAbi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "newCooldownTime",
-				"type": "uint256"
-			}
-		],
-		"name": "changeCooldown",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "newFee",
-				"type": "uint256"
-			}
-		],
-		"name": "changeGuessFee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
 		"inputs": [],
@@ -140,19 +157,6 @@ const solidityGuesserAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_guess",
-				"type": "uint32"
-			}
-		],
-		"name": "guess",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "guessFee",
 		"outputs": [
@@ -177,9 +181,5 @@ const solidityGuesserAbi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	}
 ]
