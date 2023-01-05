@@ -1,4 +1,7 @@
-const contractAddress = "0x4f39a2271B835cb5530b39e3dea57bfb9EE0484D"
+const contractAddress = '0x4f39a2271B835cb5530b39e3dea57bfb9EE0484D'
+
+// Would be an environment variable / Oracle in a production project
+const binanceApiUrl = 'https://data.binance.com/api/v3/avgPrice?symbol=ETHBUSD'
 
 let solidityGuesser
 let userAccount
@@ -74,7 +77,7 @@ async function _getCurrentNumberOfGuesses() {
 }
 
 async function _getEthereumPrice() {
-    const response = await fetch('https://data.binance.com/api/v3/avgPrice?symbol=ETHBUSD')
+    const response = await fetch(binanceApiUrl)
     const data = await response.json()
     ethPrice = data.price
     _setPricesInDollar()
@@ -98,7 +101,7 @@ function getUserGuesses() {
 async function _updateLastGuesses() {
     try {
         const events = await solidityGuesser.getPastEvents("NewGuess", { fromBlock: 0, toBlock: "latest", filter: { guesser: userAccount } })
-        _renderEvents(events)
+        _renderUserGuesses(events)
         document.getElementById('view-guesses-button').innerText = "Hide my last guesses"
         lastGuessesShowing = true
     } catch {
@@ -106,11 +109,11 @@ async function _updateLastGuesses() {
     }
 }
 
-function _renderEvents(events) {
-    const mainDiv =  document.getElementById('user-guesses')
+function _renderUserGuesses(events) {
+    const guessesDiv =  document.getElementById('user-guesses')
 
     // Reset the table
-    mainDiv.innerText = "";
+    guessesDiv.innerText = "";
 
     // Create the table and add the bootstrap classes
     const table = document.createElement('table')
@@ -180,7 +183,7 @@ function _renderEvents(events) {
 
     // Append the table body onto the table and append the table in the main div
     table.append(tBody)
-    mainDiv.append(table)
+    guessesDiv.append(table)
 }
 
 async function guess() {
