@@ -1,4 +1,5 @@
 const contractAddress = '0x4f39a2271B835cb5530b39e3dea57bfb9EE0484D'
+const goerliNetworkId = 5
 
 // Would be an environment variable / Oracle in a production project
 const binanceApiUrl = 'https://data.binance.com/api/v3/avgPrice?symbol=ETHBUSD'
@@ -11,7 +12,7 @@ let ethPrice
 let lastGuessesShowing = false
 
 async function connectToMetamask() {
-    if (window.ethereum) {
+    if (window.ethereum && window.ethereum.networkVersion == goerliNetworkId) {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
         userAccount = accounts[0]
 
@@ -26,7 +27,7 @@ async function connectToMetamask() {
 }
 
 function startApp() {
-    if (window.ethereum) {
+    if (window.ethereum && window.ethereum.networkVersion == goerliNetworkId) {
         solidityGuesser = new window.web3.eth.Contract(solidityGuesserAbi, contractAddress)
         document.getElementById('main-div').hidden = false
 
